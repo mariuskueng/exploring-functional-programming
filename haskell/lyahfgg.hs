@@ -43,3 +43,20 @@ combineLists x y = x ++ y
 -- sum [5,2,1,6,3,2,5,7]
 -- 4 `elem` [3,4,5,6] => True
 -- take 24 [13,26..]
+
+-- Types and Typeclasses
+
+removeNonUppercase :: [Char] -> [Char]
+removeNonUppercase st = [ c | c <- st, c `elem` ['A'..'Z']]
+
+addThree :: Int -> Int -> Int -> Int
+addThree x y z = x + y + z
+
+factorial :: Integer -> Integer
+factorial n = product [1..n]
+
+circumference :: Float -> Float
+circumference r = 2 * pi * r
+
+circumference' :: Double -> Double
+circumference' r = 2 * pi * r
