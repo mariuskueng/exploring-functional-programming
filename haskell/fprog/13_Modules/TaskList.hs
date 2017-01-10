@@ -30,6 +30,7 @@ dispatch :: String -> String -> IO ()
 dispatch "list"   _  = listTasksAction taskFile
 dispatch "add"    t  = addTaskAction taskFile t
 dispatch "done"   nr = markDoneAction taskFile (read nr)
+dispatch "remove"   nr = markRemoveAction taskFile (read nr)
 dispatch _        _  = return ()
 
 readTasks :: FilePath -> IO TaskList
@@ -66,6 +67,10 @@ addTask task tasks = tasks ++ [(False, task)]
 
 removeTask :: Int -> TaskList -> TaskList
 removeTask nr tasks = take nr tasks ++ drop (nr+1) tasks
+
+markRemoveAction :: FilePath -> Int -> IO ()
+markRemoveAction file nr =
+  modifyTasks file (removeTask nr)
 
 {-
 markDone :: Int -> TaskList -> TaskList
